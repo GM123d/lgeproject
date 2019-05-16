@@ -23,17 +23,18 @@ public class output extends HttpServlet {
         String itemCode=request.getParameter("itemCode"); 
         String itemName=request.getParameter("itemName"); 
         String itemType=request.getParameter("itemType"); 
-       String itemPrice=request.getParameter("itemPrice"); 
+        String itemPrice=request.getParameter("itemPrice"); 
         String quantity=request.getParameter("quantity"); 
         String companyName=request.getParameter("companyName"); 
-       String venderName=request.getParameter("venderName"); 
+        String venderName=request.getParameter("venderName"); 
         String mobileNo=request.getParameter("mobileNo"); 
         String address=request.getParameter("address"); 
         String state=request.getParameter("state"); 
         String city=request.getParameter("city"); 
         String pincode=request.getParameter("pinCode");
          
-          
+        
+       
          
        RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
        dispatcher.forward(request, response);
