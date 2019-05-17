@@ -89,7 +89,7 @@ font-size: 12px;
 
 <center>
 <h1>Invoice Bill</h1>
-	<form action="result.jsp" method="post" onsubmit="return validation()">
+	<form action="output" method="post" onsubmit="return validation()">
 	<div>
 	<table>
 	

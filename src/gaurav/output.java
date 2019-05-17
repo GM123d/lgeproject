@@ -1,5 +1,10 @@
 package gaurav;
-
+import java.sql.Connection; 
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException; 
+import java.sql.Statement;
+import java.util.concurrent.SynchronousQueue;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.Class;
@@ -22,7 +27,7 @@ public class output extends HttpServlet {
 		String itemCode1 = request.getParameter("itemCode1");
 		String itemName1 = request.getParameter("itemName1");
 		String itemType1 = request.getParameter("itemType1");
-		String itemPrice1 = request.getParameter("itemPrice1");
+		String itemPrice1 =request.getParameter("itemPrice1");
 		String quantity1 = request.getParameter("quantity1");
 		String itemCode2 = request.getParameter("itemCode2");
 		String itemName2 = request.getParameter("itemName2");
@@ -41,13 +46,32 @@ public class output extends HttpServlet {
 		String state = request.getParameter("state");
 		String city = request.getParameter("city");
 		String pinCode = request.getParameter("pinCode");
-        
+        try {
+       Class.forName("org.h2.Driver");
+       Connection con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa", "");
+       Statement stm=con.createStatement();
+       System.out.println("gaurav");
+    stm.executeUpdate("insert into member_master (Invoice_No,Company,Vender, Address,City,State,Pin_Code, Mobile_No) values('"+
+   	    invoiceNo+"','"+companyName+"','"+venderName+"','"+address+"','"+city+"','"+state+"','"+pinCode+"','"+mobileNo+"')");
        
+       //stm.executeUpdate("insert into member_master (Invoice_No) values("+
+      //invoiceNo+")");
+      // stm.executeUpdate("insert into inventory (Item_Code, Item_Name,Quantity,Price) values("+
+    	//	      itemCode1+","+itemName1+","+quantity1+","+itemPrice1+")");
+      // System.out.println("invoide no "+invoiceNo);
+      
+     //  stm.executeUpdate("insert into member_master(Invoice_No) values('"+invoiceNo+"')");	       
+       con.close();
+       }
+        catch(Exception e){
+        	
+        	System.out.println("Error has occured "+e.getMessage());
+        }
          
-       RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
-       dispatcher.forward(request, response);
+      // RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
+       //dispatcher.forward(request, response);
        
-       
+       response.sendRedirect("result.jsp");
         }  
       
     } 
