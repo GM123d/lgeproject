@@ -2,7 +2,7 @@ package gaurav;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.lang.Class;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,21 +18,29 @@ public class output extends HttpServlet {
     	 
         response.setContentType("text/html");  
         PrintWriter out = response.getWriter();  
-        
-        String invoiceNo=request.getParameter("invoiceNo");
-        String itemCode=request.getParameter("itemCode"); 
-        String itemName=request.getParameter("itemName"); 
-        String itemType=request.getParameter("itemType"); 
-        String itemPrice=request.getParameter("itemPrice"); 
-        String quantity=request.getParameter("quantity"); 
-        String companyName=request.getParameter("companyName"); 
-        String venderName=request.getParameter("venderName"); 
-        String mobileNo=request.getParameter("mobileNo"); 
-        String address=request.getParameter("address"); 
-        String state=request.getParameter("state"); 
-        String city=request.getParameter("city"); 
-        String pincode=request.getParameter("pinCode");
-         
+        String invoiceNo = request.getParameter("invoiceNo");
+		String itemCode1 = request.getParameter("itemCode1");
+		String itemName1 = request.getParameter("itemName1");
+		String itemType1 = request.getParameter("itemType1");
+		String itemPrice1 = request.getParameter("itemPrice1");
+		String quantity1 = request.getParameter("quantity1");
+		String itemCode2 = request.getParameter("itemCode2");
+		String itemName2 = request.getParameter("itemName2");
+		String itemType2 = request.getParameter("itemType2");
+		String itemPrice2 = request.getParameter("itemPrice2");
+		String quantity2 = request.getParameter("quantity2");
+		String itemCode3 = request.getParameter("itemCode3");
+		String itemName3 = request.getParameter("itemName3");
+		String itemType3 = request.getParameter("itemType3");
+		String itemPrice3 = request.getParameter("itemPrice3");
+		String quantity3= request.getParameter("quantity3");
+		String companyName = request.getParameter("companyName");
+		String venderName = request.getParameter("venderName");
+		String mobileNo = request.getParameter("mobileNo");
+		String address = request.getParameter("address");
+		String state = request.getParameter("state");
+		String city = request.getParameter("city");
+		String pinCode = request.getParameter("pinCode");
         
        
          

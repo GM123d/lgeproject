@@ -8,26 +8,56 @@
 function validation(){
 	var companyName=document.getElementById("company").value;
 	var venderName=document.getElementById("vender").value;
-
-	if(companyName==null||companyName==""){
+	var mobileNo=document.getElementById("mobile").value;
+    var t=0;
 	
-		document.getElementById("company").focus();
-		document.getElementById("companyName").innerHTML="*Enter the Company Name";
-		return false;
-	}
-	else{
+	
+	if(mobileNo==null||mobileNo==""){
+		document.getElementById("mobile").focus();
+		document.getElementById("mobileNo").innerHTML="*Enter the mobile No. ";
+		t=t+1;
 		
-		return true;
+	}else if(isNaN(mobileNo)||mobileNo.length>10){
+		
+		document.getElementById("mobile").focus();
+		document.getElementById("mobileNo").innerHTML="Invalid Mobile No."
+		t=t+1;
 	}
+		else{
+			
+			document.getElementById("mobileNo").innerHTML=""
+			
+		}
+	
 	if(venderName==null||venderName==""){
 		document.getElementById("vender").focus();
 		document.getElementById("venderName").innerHTML="*Enter the Vender Name ";
-		return false;
-	}
-		else{
-			return true;
-	}
+		t=t+1;
 		
+	}else{
+		
+		document.getElementById("venderName").innerHTML="";
+	}
+	
+	if(companyName==null||companyName==""){
+		
+		document.getElementById("company").focus();
+		document.getElementById("companyName").innerHTML="*Enter the Company Name";
+		t=t+1;
+		
+	}
+	
+	
+	else{
+		
+		document.getElementById("companyName").innerHTML="";
+	}
+	if(t>0){
+			
+			return false;
+		}else{
+			return true;
+		}
 		
 	}
 	
@@ -40,6 +70,9 @@ function validation(){
 		div {
 
   background-color: lightgrey;
+  width:1000px;
+  border:3px solid black;
+  
 }
 .invalid{
 
@@ -48,16 +81,14 @@ font-size: 12px;
 
 }
 
-
-
-
-	</style>
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 
 <center>
+<h1>Invoice Bill</h1>
 	<form action="result.jsp" method="post" onsubmit="return validation()">
 	<div>
 	<table>
@@ -93,7 +124,7 @@ font-size: 12px;
 	       </tr>
 	       	<tr>
 	       <td>Mobile no:</td>
-	       <td><input type="text" name= "mobileNo"></td>
+	       <td><input type="text" id="mobile" name= "mobileNo"><br/><span id="mobileNo" class="invalid" ></span></td>
 	       </tr>
 	      
 	       <tr>

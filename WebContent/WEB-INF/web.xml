@@ -39,4 +39,34 @@
     <servlet-name>Welcome</servlet-name>
     <url-pattern>/Welcome</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>database</display-name>
+    <servlet-name>database</servlet-name>
+    <servlet-class>gaurav.database</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>database</servlet-name>
+    <url-pattern>/database</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Database1</display-name>
+    <servlet-name>Database1</servlet-name>
+    <servlet-class>gaurav.Database</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Database1</servlet-name>
+    <url-pattern>/Database1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>data</display-name>
+    <servlet-name>data</servlet-name>
+    <servlet-class>gaurav.data</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>data</servlet-name>
+    <url-pattern>/data</url-pattern>
+  </servlet-mapping>
 </web-app>
