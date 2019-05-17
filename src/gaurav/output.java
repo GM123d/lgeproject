@@ -24,11 +24,11 @@ public class output extends HttpServlet {
         response.setContentType("text/html");  
         PrintWriter out = response.getWriter();  
         String invoiceNo = request.getParameter("invoiceNo");
-		String itemCode1 = request.getParameter("itemCode1");
+		int itemCode1 = Integer.parseInt(request.getParameter("itemCode1"));
 		String itemName1 = request.getParameter("itemName1");
 		String itemType1 = request.getParameter("itemType1");
-		String itemPrice1 =request.getParameter("itemPrice1");
-		String quantity1 = request.getParameter("quantity1");
+		float itemPrice1 =Float.parseFloat(request.getParameter("itemPrice1"));
+		int quantity1 = Integer.parseInt(request.getParameter("quantity1"));
 		String itemCode2 = request.getParameter("itemCode2");
 		String itemName2 = request.getParameter("itemName2");
 		String itemType2 = request.getParameter("itemType2");
@@ -56,8 +56,8 @@ public class output extends HttpServlet {
        
        //stm.executeUpdate("insert into member_master (Invoice_No) values("+
       //invoiceNo+")");
-      // stm.executeUpdate("insert into inventory (Item_Code, Item_Name,Quantity,Price) values("+
-    	//	      itemCode1+","+itemName1+","+quantity1+","+itemPrice1+")");
+       stm.executeUpdate("insert into inventory (Item_Code, Item_Name,Quantity,Price) values('"+
+    		      itemCode1+"','"+itemName1+"','"+quantity1+"','"+itemPrice1+"')");
       // System.out.println("invoide no "+invoiceNo);
       
      //  stm.executeUpdate("insert into member_master(Invoice_No) values('"+invoiceNo+"')");	       
@@ -68,10 +68,10 @@ public class output extends HttpServlet {
         	System.out.println("Error has occured "+e.getMessage());
         }
          
-      // RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
-       //dispatcher.forward(request, response);
+       RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
+       dispatcher.forward(request, response);
        
-       response.sendRedirect("result.jsp");
+      // response.sendRedirect("result.jsp");
         }  
       
     } 
