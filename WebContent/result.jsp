@@ -15,11 +15,11 @@
 <body>
 	<%
 		String invoiceNo = request.getParameter("invoiceNo");
-		String itemCode = request.getParameter("itemCode1");
-		String itemName = request.getParameter("itemName1");
-		String itemType = request.getParameter("itemType1");
-		String itemPrice = request.getParameter("itemPrice1");
-		String quantity = request.getParameter("quantity1");
+		String[] itemCode = request.getParameterValues("itemCodeData");
+		String[] itemName = request.getParameterValues("itemNameData");
+		String[] itemType = request.getParameterValues("itemTypeData");
+		String[] itemPrice = request.getParameterValues("itemPriceData");
+		String[] quantity = request.getParameterValues("quantityData");
 		/*String itemCode2 = request.getParameter("itemCode2");
 		String itemName2 = request.getParameter("itemName2");
 		String itemType2 = request.getParameter("itemType2");
@@ -37,6 +37,7 @@
 		String state = request.getParameter("state");
 		String city = request.getParameter("city");
 		String pinCode = request.getParameter("pinCode");
+		int l=itemPrice.length;
 	%>
 
 <center>
@@ -88,21 +89,21 @@
 	       </tr>
 	     
 	        
-	        
+	        <%  for(int i=0;i<l;i++){ %>
 	       <tr>
-	       <td><%=itemCode %></td>
+	       <td><%=itemCode[i] %></td>
 	      
 	       
-	       <td><%=itemName %></td>
+	       <td><%=itemName[i] %></td>
 	       
-	       <td><%=itemType %></td>
+	       <td><%=itemType[i]%></td>
 	       
 	      
-	       <td><%=itemPrice %></td>
+	       <td><%=itemPrice[i] %></td>
 	       
-	       <td><%= quantity%></td>
+	       <td><%= quantity[i]%></td>
 	       </tr>
-	       
+	       <%} %>
 	       
 	    
 	         

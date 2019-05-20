@@ -1,5 +1,7 @@
 package com.core;
 
+
+
 public class StringContacat {
 
 	public static void main(String[] args) {

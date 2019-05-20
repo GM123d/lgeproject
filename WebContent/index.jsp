@@ -7,85 +7,7 @@
 <script type="text/javascript">
 var i=0;
 var buttonId=0;
-function itemRemove(button){
-	i=i-1;
-	var b=Number(button);
-	buttonId=buttonId-1;
-	//console.log(i);
-	
-	//console.log(button);
-	//console.log(buttonId);
-	
-	$(document).ready(function(){
-		
-		var del="#row"+button;
-			$(del).remove();
-			
-			document.getElementById("numberOfItems").innerHTML="Items - "+i;
-			
-	});
-	
-	var j;
-	for(j=b+1;j<=buttonId;j++){
-		
-			var oldIdRow="#row"+(j);
-			var newIdRow="row"+(j-1);
-			var oldIdButton="#"+(j);
-			var newIdButton=""+(j-1);
-			console.log(oldIdRow);
-			console.log(newIdRow);
-			//console.log("sucess");
-		$(document).ready(function(){
-				
-			$(oldIdRow).prop('id',newIdRow);
-				$(oldIdButton).prop('id',newIdButton);
-				
-			});
-			
-			
-			
-		}
-}
-function anotherItem(){
 
-	var  itemCode=document.getElementsByName("itemCode")[0].value;
-	var itemName=document.getElementsByName("itemName")[0].value;
-	var itemType=document.getElementsByName("itemType")[0].value;
-	var itemPrice=document.getElementsByName("itemPrice")[0].value;
-	var quantity=document.getElementsByName("quantity")[0].value;
-	
-	
-	$(document).ready(function(){
-		if(i==0){
-			
-			$("#inventory").append(" <tr><td><b>Item code</b></td><td><b>Item name</b></td><td><b>Item type</b></td><td><b>Item Price</b></td> <td><b>Quantity</b></td></tr>");
-			$("#inventory").append("<tr name style=background-color:#A9A9A9; id="+"row"+buttonId+"><td>"+itemCode+"</td><td>"+itemName+"</td><td>"+itemType+"</td><td>"+itemPrice+"</td><td>"+quantity+"</td><td><button id="+buttonId+" onclick=itemRemove(this.id)>Delete</button><td></tr>");
-			i=i+1;
-			buttonId=buttonId+1;
-		}else{
-			if(i%2!=0){
-				
-
-				$("#inventory").append("<tr id=row"+buttonId+"><td>"+itemCode+"</td><td>"+itemName+"</td><td>"+itemType+"</td><td>"+itemPrice+"</td><td>"+quantity+"</td><td><button id="+buttonId+" onclick=itemRemove(this.id)>Delete</button><td></tr>");	
-				buttonId=buttonId+1;
-				i=i+1;
-			}else{
-				
-
-				$("#inventory").append("<tr style=background-color:#A9A9A9; id=row"+buttonId+"><td>"+itemCode+"</td><td>"+itemName+"</td><td>"+itemType+"</td><td>"+itemPrice+"</td><td>"+quantity+"</td><td><button id="+buttonId+" onclick=itemRemove(this.id)>Delete</button><td></tr>");	
-				buttonId=buttonId+1;	
-				i=i+1;
-			}
-			
-		}
-		
-		document.getElementById("numberOfItems").innerHTML="Items - "+i;
-	
-	});
-	
-	//console.log(i);
-	//console.log(buttonId);
-}
 
 function validation(){
 	var companyName=document.getElementById("company").value;
@@ -93,21 +15,20 @@ function validation(){
 	var mobileNo=document.getElementById("mobile").value;
 	var itemType=document.getElementById("item").value;
     var t=0;
-    
+    //alert("submit btn "+ itemType);
 	//console.log(itemType);
-if(itemType!="Select"){
-	document.getElementById("itemType").innerHTML="";
-	
+if(itemType==""){
+	document.getElementById("itemType").innerHTML="*Select the Item Type";
+	t=t+1;
 	
 	}
 	
 	
 	else{
-		
+		document.getElementById("itemType").innerHTML="";
 	//document.getElementById("item").focus();
-		document.getElementById("itemType").innerHTML="*Select the Item Type";
-		t=t+1;
-		console.log("detected");
+		
+		
 	}
 	if(mobileNo==null||mobileNo==""){
 		document.getElementById("mobile").focus();
@@ -132,7 +53,6 @@ if(itemType!="Select"){
 		t=t+1;
 		
 	}else{
-		
 		document.getElementById("venderName").innerHTML="";
 	}
 	
@@ -157,7 +77,98 @@ if(itemType!="Select"){
 		}
 		
 	}
+
+
+function itemRemove(button){
 	
+	i=i-1;
+	var b=Number(button);
+	buttonId=buttonId-1;
+	//console.log(i);
+	
+	//console.log(button);
+	//console.log(buttonId);
+	
+	$(document).ready(function(){
+		
+		var del="#row"+button;
+			$(del).remove();
+			
+			document.getElementById("numberOfItems").innerHTML="Items - "+i;
+			
+	});
+	
+	//var j;
+	//for(j=b+1;j<=buttonId;j++){
+		
+		//	var oldIdRow="#row"+(j);
+		//	var newIdRow="row"+(j-1);
+		//	var oldIdButton="#"+(j);
+		//	var newIdButton=""+(j-1);
+		//	console.log(oldIdRow);
+		//	console.log(newIdRow);
+			//console.log("sucess");
+		//$(document).ready(function(){
+				
+		//	$(oldIdRow).attr('id',newIdRow);
+		//		$(oldIdButton).attr('id',newIdButton);
+				
+		//	});
+			
+			
+			
+		//}
+}
+
+function anotherItem(){
+	if(validation()){
+	//var v = $("#table tr").length;
+	//for(var a = 0; a<v; a++){
+		var  itemCode=document.getElementsByName("itemCode")[0].value;
+		var itemName=document.getElementsByName("itemName")[0].value;
+		var itemType=document.getElementsByName("itemType")[0].value;
+		var itemPrice=document.getElementsByName("itemPrice")[0].value;
+		var quantity=document.getElementsByName("quantity")[0].value;
+		
+	//}
+	//alert("item type another item "+ itemType);
+	console.log("gaurav");
+	
+	
+	$(document).ready(function(){
+		if(i==0){
+			
+			$("#inventory").append(" <tr><td><b>Item code</b></td><td><b>Item name</b></td><td><b>Item type</b></td><td><b>Item Price</b></td> <td><b>Quantity</b></td></tr>");
+			$("#inventory").append("<tr  id=row"+buttonId+"><td><input name=itemCodeData value="+itemCode+" readonly></td><td><input name=itemNameData value="+itemName+" readonly></td><td><input name=itemTypeData value="+itemType+" readonly></td><td><input name=itemPriceData value="+itemPrice+" readonly></td><td><input name=quantityData value="+quantity+" readonly></td><td><button id="+buttonId+" onclick=itemRemove(this.id)>Delete</button><td></tr>");	
+			i=i+1;
+			buttonId=buttonId+1;
+		}else{
+			if(i%2!=0){
+				
+				
+				$("#inventory").append("<tr id=row"+buttonId+"><td><input name=itemCodeData value="+itemCode+" readonly></td><td><input name=itemNameData value="+itemName+" readonly></td><td><input name=itemTypeData value="+itemType+" readonly></td><td><input name=itemPriceData value="+itemPrice+" readonly></td><td><input name=quantityData value="+quantity+" readonly></td><td><button id="+buttonId+" onclick=itemRemove(this.id)>Delete</button><td></tr>");	
+				buttonId=buttonId+1;
+				i=i+1;
+			}else{
+				
+
+				$("#inventory").append("<tr  id=row"+buttonId+"><td><input name=itemCodeData value="+itemCode+" readonly></td><td><input name=itemNameData value="+itemName+" readonly></td><td><input name=itemTypeData value="+itemType+" readonly></td><td><input name=itemPriceData value="+itemPrice+" readonly></td><td><input name=quantityData value="+quantity+" readonly></td><td><button id="+buttonId+" onclick=itemRemove(this.id)>Delete</button><td></tr>");	
+				buttonId=buttonId+1;	
+				i=i+1;
+			}
+			
+		}
+		
+		document.getElementById("numberOfItems").innerHTML="Items - "+i;
+	
+	});
+	
+	//console.log(i);
+	//console.log(buttonId);
+
+
+	}
+}
 	
 
 
@@ -205,7 +216,7 @@ font-size: 12px;
 
 <center>
 <h1>Invoice Bill</h1>
-	<form  action="#" method="post" onsubmit="return validation()">
+	<form  action="output" method="post" onsubmit="return validation()" >
 	<div >
 	<table >
 	
@@ -262,7 +273,7 @@ font-size: 12px;
 	       <td><input type ="text" name = "itemName"></td>
 	       
 	       <td><select id="item" name ="itemType">
-	       <option value = "Select">Select Option</option>
+	       <option value = "">Select Option</option>
 	       <option value= "Stationary">Stationary</option>
 	       <option value = "Electronics">Electronics Goods</option>
 	       <option value = "Grocery">Grocery</option>
@@ -274,10 +285,10 @@ font-size: 12px;
 	       
 	       <td><input type="text"  name="quantity"></td>
 	       </tr>
-	       <tr>
+	        <tr>
 	       <td></td>
 	       <td></td>
-	      <td><button onclick="return anotherItem()">Add Item</button></td>
+	      <td><button type="button"onclick="return anotherItem()">Add Item</button></td>
 	       </tr>
 	       
 	    
@@ -338,7 +349,7 @@ font-size: 12px;
 	       </div>
 	       <div class="space"></div>
 	       <button id="formSubmit" type="submit">Submit</button>
-	       
+	
 	</form>
 	
 	

@@ -20,15 +20,68 @@ public class output extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {  
     	
     	// response.sendRedirect("Welcome");
-    	
-        response.setContentType("text/html");  
-        PrintWriter out = response.getWriter();  
+    
+        response.setContentType("text/html"); 
         String invoiceNo = request.getParameter("invoiceNo");
+        String companyName = request.getParameter("companyName");
+		String venderName = request.getParameter("venderName");
+		String mobileNo = request.getParameter("mobileNo");
+		String address = request.getParameter("address");
+		String state = request.getParameter("state");
+		String city = request.getParameter("city");
+		String pinCode = request.getParameter("pinCode");
+        PrintWriter out = response.getWriter(); 
+        String[] itemCode=request.getParameterValues("itemCodeData");
+        String[] itemName=request.getParameterValues("itemNameData");
+        String[] itemType=request.getParameterValues("itemTypeData");
+        String[] itemPrice=request.getParameterValues("itemPriceData");
+        String[] quantity=request.getParameterValues("quantityData");
+        int l=itemCode.length;
+        try {
+        Class.forName("org.h2.Driver");
+		 Connection con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa", "");
+	        Statement stm=con.createStatement();
+	        stm.executeUpdate("insert into member_master (Invoice_No,Company,Vender, Address,City,State,Pin_Code, Mobile_No) values('"+
+	           	    invoiceNo+"','"+companyName+"','"+venderName+"','"+address+"','"+city+"','"+state+"','"+pinCode+"','"+mobileNo+"')");
+	        int d=0;
+	        int j=1; 
+	        ResultSet rs=stm.executeQuery("Select max(id) from member_master");
+	         while(rs.next()) {
+	        	 d=rs.getInt(j);
+	        	 j++;
+	         }
+        for(int i=0;i<l;i++) {
+        
+       stm.executeUpdate("insert into inventory (Item_Code, Item_Name,Quantity,Price,id) values('"+
+		    		      Integer.parseInt(itemCode[i])+"','"+itemName[i]+"','"+Integer.parseInt(quantity[i])+"','"+Float.parseFloat(itemPrice[i])+"','"+d+"')");
+       
+        }
+		       
+        con.close();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
+        dispatcher.forward(request, response);
+        }	catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.print(e);
+		}
+       
+        
+        
+        
+        
+        }
+       
+        //String[] s=request.getParameterValues("gaurav");
+        //for(int i=0;i<2;i++) {
+        //out.println(s[i]);}
+        //for(int i=0;i<3;i++) {
+        //out.println(s[i]);}
+        /*String invoiceNo = request.getParameter("invoiceNo");
 		int itemCode = Integer.parseInt(request.getParameter("itemCode"));
 		String itemName = request.getParameter("itemName");
 		String itemType = request.getParameter("itemType");
 		float itemPrice =Float.parseFloat(request.getParameter("itemPrice"));
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		int quantity = Integer.parseInt(request.getParameter("quantity"));*/
 		/*String itemCode2 = request.getParameter("itemCode2");
 		String itemName2 = request.getParameter("itemName2");
 		String itemType2 = request.getParameter("itemType2");
@@ -39,13 +92,14 @@ public class output extends HttpServlet {
 		String itemType3 = request.getParameter("itemType3");
 		String itemPrice3 = request.getParameter("itemPrice3");
 		String quantity3= request.getParameter("quantity3");*/
-		String companyName = request.getParameter("companyName");
+		/*String companyName = request.getParameter("companyName");
 		String venderName = request.getParameter("venderName");
 		String mobileNo = request.getParameter("mobileNo");
 		String address = request.getParameter("address");
 		String state = request.getParameter("state");
 		String city = request.getParameter("city");
 		String pinCode = request.getParameter("pinCode");
+		//String item = request.getParameterValues(arg0);
         try {
        Class.forName("org.h2.Driver");
        Connection con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa", "");
@@ -80,7 +134,7 @@ public class output extends HttpServlet {
        RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
        dispatcher.forward(request, response);
        
-      // response.sendRedirect("result.jsp");
+      // response.sendRedirect("result.jsp");*/
         }  
       
-    } 
+     
