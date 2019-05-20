@@ -15,12 +15,12 @@
 <body>
 	<%
 		String invoiceNo = request.getParameter("invoiceNo");
-		String itemCode1 = request.getParameter("itemCode1");
-		String itemName1 = request.getParameter("itemName1");
-		String itemType1 = request.getParameter("itemType1");
-		String itemPrice1 = request.getParameter("itemPrice1");
-		String quantity1 = request.getParameter("quantity1");
-		String itemCode2 = request.getParameter("itemCode2");
+		String itemCode = request.getParameter("itemCode1");
+		String itemName = request.getParameter("itemName1");
+		String itemType = request.getParameter("itemType1");
+		String itemPrice = request.getParameter("itemPrice1");
+		String quantity = request.getParameter("quantity1");
+		/*String itemCode2 = request.getParameter("itemCode2");
 		String itemName2 = request.getParameter("itemName2");
 		String itemType2 = request.getParameter("itemType2");
 		String itemPrice2 = request.getParameter("itemPrice2");
@@ -29,7 +29,7 @@
 		String itemName3 = request.getParameter("itemName3");
 		String itemType3 = request.getParameter("itemType3");
 		String itemPrice3 = request.getParameter("itemPrice3");
-		String quantity3= request.getParameter("quantity3");
+		String quantity3= request.getParameter("quantity3");*/
 		String companyName = request.getParameter("companyName");
 		String venderName = request.getParameter("venderName");
 		String mobileNo = request.getParameter("mobileNo");
@@ -40,7 +40,8 @@
 	%>
 
 <center>
-	<form action="result.jsp" method="post">
+<h1>Invoice Bill</h1>
+	<form action="index.jsp">
 	<div>
 	<table>
 	
@@ -89,56 +90,29 @@
 	        
 	        
 	       <tr>
-	       <td><%=itemCode1 %></td>
+	       <td><%=itemCode %></td>
 	      
 	       
-	       <td><%=itemName1 %></td>
+	       <td><%=itemName %></td>
 	       
-	       <td><%=itemType1 %></td>
+	       <td><%=itemType %></td>
 	       
 	      
-	       <td><%=itemPrice1 %></td>
+	       <td><%=itemPrice %></td>
 	       
-	       <td><%= quantity1%></td>
+	       <td><%= quantity%></td>
 	       </tr>
 	       
 	       
 	    
 	         
-	       <tr>
-	       <td><%=itemCode2 %></td>
-	      
-	       
-	       <td><%=itemName2 %></td>
-	       
-	       <td><%=itemType2 %></td>
-	       
-	      
-	       <td><%=itemPrice2 %></td>
-	       
-	       <td><%= quantity2%></td>
-	       </tr>
-	       
-	         
-	       <tr>
-	       <td><%=itemCode3 %></td>
-	      
-	       
-	       <td><%=itemName3 %></td>
-	       
-	       <td><%=itemType3 %></td>
-	       
-	      
-	       <td><%=itemPrice3 %></td>
-	       
-	       <td><%= quantity3%></td>
-	       </tr>
+	   
 	      
 	       </table>
 	       </div>
 	       
 	    
-	       
+	        <button type="submit">Add more Items</button>
 	</form>
 
 	</center>

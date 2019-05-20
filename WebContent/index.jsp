@@ -3,15 +3,112 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  
 <script type="text/javascript">
+var i=0;
+var buttonId=0;
+function itemRemove(button){
+	i=i-1;
+	var b=Number(button);
+	buttonId=buttonId-1;
+	//console.log(i);
+	
+	//console.log(button);
+	//console.log(buttonId);
+	
+	$(document).ready(function(){
+		
+		var del="#row"+button;
+			$(del).remove();
+			
+			document.getElementById("numberOfItems").innerHTML="Items - "+i;
+			
+	});
+	
+	var j;
+	for(j=b+1;j<=buttonId;j++){
+		
+			var oldIdRow="#row"+(j);
+			var newIdRow="row"+(j-1);
+			var oldIdButton="#"+(j);
+			var newIdButton=""+(j-1);
+			console.log(oldIdRow);
+			console.log(newIdRow);
+			//console.log("sucess");
+		$(document).ready(function(){
+				
+			$(oldIdRow).prop('id',newIdRow);
+				$(oldIdButton).prop('id',newIdButton);
+				
+			});
+			
+			
+			
+		}
+}
+function anotherItem(){
+
+	var  itemCode=document.getElementsByName("itemCode")[0].value;
+	var itemName=document.getElementsByName("itemName")[0].value;
+	var itemType=document.getElementsByName("itemType")[0].value;
+	var itemPrice=document.getElementsByName("itemPrice")[0].value;
+	var quantity=document.getElementsByName("quantity")[0].value;
+	
+	
+	$(document).ready(function(){
+		if(i==0){
+			
+			$("#inventory").append(" <tr><td><b>Item code</b></td><td><b>Item name</b></td><td><b>Item type</b></td><td><b>Item Price</b></td> <td><b>Quantity</b></td></tr>");
+			$("#inventory").append("<tr name style=background-color:#A9A9A9; id="+"row"+buttonId+"><td>"+itemCode+"</td><td>"+itemName+"</td><td>"+itemType+"</td><td>"+itemPrice+"</td><td>"+quantity+"</td><td><button id="+buttonId+" onclick=itemRemove(this.id)>Delete</button><td></tr>");
+			i=i+1;
+			buttonId=buttonId+1;
+		}else{
+			if(i%2!=0){
+				
+
+				$("#inventory").append("<tr id=row"+buttonId+"><td>"+itemCode+"</td><td>"+itemName+"</td><td>"+itemType+"</td><td>"+itemPrice+"</td><td>"+quantity+"</td><td><button id="+buttonId+" onclick=itemRemove(this.id)>Delete</button><td></tr>");	
+				buttonId=buttonId+1;
+				i=i+1;
+			}else{
+				
+
+				$("#inventory").append("<tr style=background-color:#A9A9A9; id=row"+buttonId+"><td>"+itemCode+"</td><td>"+itemName+"</td><td>"+itemType+"</td><td>"+itemPrice+"</td><td>"+quantity+"</td><td><button id="+buttonId+" onclick=itemRemove(this.id)>Delete</button><td></tr>");	
+				buttonId=buttonId+1;	
+				i=i+1;
+			}
+			
+		}
+		
+		document.getElementById("numberOfItems").innerHTML="Items - "+i;
+	
+	});
+	
+	//console.log(i);
+	//console.log(buttonId);
+}
 
 function validation(){
 	var companyName=document.getElementById("company").value;
 	var venderName=document.getElementById("vender").value;
 	var mobileNo=document.getElementById("mobile").value;
+	var itemType=document.getElementById("item").value;
     var t=0;
+    
+	//console.log(itemType);
+if(itemType!="Select"){
+	document.getElementById("itemType").innerHTML="";
 	
 	
+	}
+	
+	
+	else{
+		
+	//document.getElementById("item").focus();
+		document.getElementById("itemType").innerHTML="*Select the Item Type";
+		t=t+1;
+		console.log("detected");
+	}
 	if(mobileNo==null||mobileNo==""){
 		document.getElementById("mobile").focus();
 		document.getElementById("mobileNo").innerHTML="*Enter the mobile No. ";
@@ -67,12 +164,31 @@ function validation(){
 </script>
 
 <style type="text/css">
+
 		div {
 
   background-color: lightgrey;
   width:1000px;
   border:3px solid black;
   
+}
+#inventory{
+
+width:800px;
+}
+.space{
+height:20px;
+border:0px solid white;
+background-color:white;
+
+}
+
+#formSubmit{
+
+width: 100px;
+height: 50px;
+
+
 }
 .invalid{
 
@@ -89,9 +205,9 @@ font-size: 12px;
 
 <center>
 <h1>Invoice Bill</h1>
-	<form action="output" method="post" onsubmit="return validation()">
-	<div>
-	<table>
+	<form  action="#" method="post" onsubmit="return validation()">
+	<div >
+	<table >
 	
 	<tr>
 	   <td>Company name:</td>
@@ -126,8 +242,8 @@ font-size: 12px;
 	       <td>Mobile no:</td>
 	       <td><input type="text" id="mobile" name= "mobileNo"><br/><span id="mobileNo" class="invalid" ></span></td>
 	       </tr>
-	      
-	       <tr>
+	    
+	       <tr >
 	         <td>Item code:</td>
 	       <td>Item name:</td>
 	       <td>Item type:</td>
@@ -135,31 +251,37 @@ font-size: 12px;
 	        <td>Quantity:</td>
 	       </tr>
 	     
+	     
+	 
 	        
 	        
-	       <tr>
-	       <td><input type ="text" name="itemCode1"></td>
+	       <tr >
+	       <td><input type ="text" name="itemCode"></td>
 	      
 	       
-	       <td><input type ="text" name = "itemName1"></td>
+	       <td><input type ="text" name = "itemName"></td>
 	       
-	       <td><select name ="itemType1">
-	       <option value = "Select Option ">Select Option</option>
+	       <td><select id="item" name ="itemType">
+	       <option value = "Select">Select Option</option>
 	       <option value= "Stationary">Stationary</option>
 	       <option value = "Electronics">Electronics Goods</option>
 	       <option value = "Grocery">Grocery</option>
 	       <option value  = "Hardware">Hardware Goods</option>
-	       </select></td>
+	       </select><br/><span id="itemType" class="invalid"></span></td>
 	       
 	      
-	       <td><input type ="text" name="itemPrice1"></td>
+	       <td><input type ="text" name="itemPrice"></td>
 	       
-	       <td><input type="text"  name="quantity1"></td>
+	       <td><input type="text"  name="quantity"></td>
+	       </tr>
+	       <tr>
+	       <td></td>
+	       <td></td>
+	      <td><button onclick="return anotherItem()">Add Item</button></td>
 	       </tr>
 	       
-	       
 	    
-	        <tr>
+	      <!--    <tr>
 	       
 	       <td><input type ="text" name="itemCode2"></td>
 	      
@@ -198,14 +320,28 @@ font-size: 12px;
 	       <td><input type ="text" name="itemPrice3"></td>
 	       
 	       <td><input type="text"  name="quantity3"></td>
-	       </tr>
-	      
+	       </tr>-->
+	   
 	       </table>
-	       </div>
 	       
-	       <button type="submit">Submit</button>
+	       </div>
+	       <div class="space"></div>
+	       <div><table id="inventory">
+	       
+	       
+	       
+	       
+	       </table>
+	      
+	       <p><b id="numberOfItems"></b></p>
+	       
+	       </div>
+	       <div class="space"></div>
+	       <button id="formSubmit" type="submit">Submit</button>
 	       
 	</form>
+	
+	
 
 	</center>
 	

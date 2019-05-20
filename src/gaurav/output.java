@@ -20,16 +20,16 @@ public class output extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)   throws ServletException, IOException {  
     	
     	// response.sendRedirect("Welcome");
-    	 
+    	
         response.setContentType("text/html");  
         PrintWriter out = response.getWriter();  
         String invoiceNo = request.getParameter("invoiceNo");
-		int itemCode1 = Integer.parseInt(request.getParameter("itemCode1"));
-		String itemName1 = request.getParameter("itemName1");
-		String itemType1 = request.getParameter("itemType1");
-		float itemPrice1 =Float.parseFloat(request.getParameter("itemPrice1"));
-		int quantity1 = Integer.parseInt(request.getParameter("quantity1"));
-		String itemCode2 = request.getParameter("itemCode2");
+		int itemCode = Integer.parseInt(request.getParameter("itemCode"));
+		String itemName = request.getParameter("itemName");
+		String itemType = request.getParameter("itemType");
+		float itemPrice =Float.parseFloat(request.getParameter("itemPrice"));
+		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		/*String itemCode2 = request.getParameter("itemCode2");
 		String itemName2 = request.getParameter("itemName2");
 		String itemType2 = request.getParameter("itemType2");
 		String itemPrice2 = request.getParameter("itemPrice2");
@@ -38,7 +38,7 @@ public class output extends HttpServlet {
 		String itemName3 = request.getParameter("itemName3");
 		String itemType3 = request.getParameter("itemType3");
 		String itemPrice3 = request.getParameter("itemPrice3");
-		String quantity3= request.getParameter("quantity3");
+		String quantity3= request.getParameter("quantity3");*/
 		String companyName = request.getParameter("companyName");
 		String venderName = request.getParameter("venderName");
 		String mobileNo = request.getParameter("mobileNo");
@@ -51,13 +51,22 @@ public class output extends HttpServlet {
        Connection con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa", "");
        Statement stm=con.createStatement();
        System.out.println("gaurav");
+       
+       
     stm.executeUpdate("insert into member_master (Invoice_No,Company,Vender, Address,City,State,Pin_Code, Mobile_No) values('"+
    	    invoiceNo+"','"+companyName+"','"+venderName+"','"+address+"','"+city+"','"+state+"','"+pinCode+"','"+mobileNo+"')");
        
        //stm.executeUpdate("insert into member_master (Invoice_No) values("+
       //invoiceNo+")");
-       stm.executeUpdate("insert into inventory (Item_Code, Item_Name,Quantity,Price) values('"+
-    		      itemCode1+"','"+itemName1+"','"+quantity1+"','"+itemPrice1+"')");
+    int d=0;
+    int i=1; 
+    ResultSet rs=stm.executeQuery("Select max(id) from member_master");
+     while(rs.next()) {
+    	 d=rs.getInt(i);
+    	 i++;
+     }
+       stm.executeUpdate("insert into inventory (Item_Code, Item_Name,Quantity,Price,id) values('"+
+    		      itemCode+"','"+itemName+"','"+quantity+"','"+itemPrice+"','"+d+"')");
       // System.out.println("invoide no "+invoiceNo);
       
      //  stm.executeUpdate("insert into member_master(Invoice_No) values('"+invoiceNo+"')");	       
