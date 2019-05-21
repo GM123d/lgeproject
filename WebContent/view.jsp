@@ -66,7 +66,7 @@ width:70px;
 
 <%
 
-String s="";
+String s=request.getParameter("invoiceNo");
 
 try{
 	int primaryKey=0;

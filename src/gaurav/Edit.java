@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.io.IOException;
 import java.util.concurrent.SynchronousQueue;
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,27 +40,23 @@ public class Edit extends HttpServlet {
 			while(r.next()) {
 				stm.setInt(1,Integer.parseInt(itemCode[i]));
 				stm.setString(2,itemName[i] );
-				stm.setInt(3, );
-				stm.setInt(4, );
-				stm.setInt(5, );
-				stm.setInt(6, );
-				
-				
-				
-				
-				
-				
+				stm.setString(3,itemType[i] );
+				stm.setFloat(4, Float.parseFloat(itemPrice[i]));
+				stm.setInt(5, Integer.parseInt(quantity[i]));
+				stm.setInt(6,Integer.parseInt(itemId[i]) );
+				stm.executeUpdate();
 				
 			}
 		}
 		
 		con.close();
+		
+		response.sendRedirect("invoice.jsp");
+		
 		}catch(Exception e) {
 					
 					System.out.println(e);
 				}
-			
-		response.sendRedirect("view.jsp");
 		
 	}
 	
