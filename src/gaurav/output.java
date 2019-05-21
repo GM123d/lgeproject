@@ -4,8 +4,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException; 
 import java.sql.Statement;
-import java.util.concurrent.SynchronousQueue;
 import java.io.IOException;
+import java.util.concurrent.SynchronousQueue;
+
 import java.io.PrintWriter;
 import java.lang.Class;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.h2.engine.Session;
 
 public class output extends HttpServlet {
 	      
@@ -52,8 +55,8 @@ public class output extends HttpServlet {
 	         }
         for(int i=0;i<l;i++) {
         
-       stm.executeUpdate("insert into inventory (Item_Code, Item_Name,Quantity,Price,id) values('"+
-		    		      Integer.parseInt(itemCode[i])+"','"+itemName[i]+"','"+Integer.parseInt(quantity[i])+"','"+Float.parseFloat(itemPrice[i])+"','"+d+"')");
+       stm.executeUpdate("insert into inventory (Item_Code, Item_Name,Item_Type,Quantity,Price,id) values('"+
+		    		      Integer.parseInt(itemCode[i])+"','"+itemName[i]+"','"+itemType[i]+"','"+Integer.parseInt(quantity[i])+"','"+Float.parseFloat(itemPrice[i])+"','"+d+"')");
        
         }
 		       
@@ -137,4 +140,4 @@ public class output extends HttpServlet {
       // response.sendRedirect("result.jsp");*/
         }  
       
-     
+    
