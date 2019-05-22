@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Insert extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Connection con=null;
 		PreparedStatement p=null, pm=null;
 		ResultSet rs=null;
 		String[] itemId=request.getParameterValues("itemId");
@@ -31,7 +32,7 @@ public class Insert extends HttpServlet {
 	  int foreignKey=0;
         try {
         Class.forName("org.h2.Driver");
-		 Connection con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa", "");
+		  con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa", "");
 		  p=con.prepareStatement("Select * from inventory where item_id=?");
 	      pm=con.prepareStatement("insert into inventory (Item_Code, Item_Name,Item_Type,Quantity,Price,id) values(?,?,?,?,?,?)");
 	      p.setInt(1, itemIdKey);
@@ -55,6 +56,27 @@ public class Insert extends HttpServlet {
         }	catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.print(e);
+		}finally {
+			try {
+				if(con!=null) {
+					
+					con.close();
+				}if(p!=null) {
+					
+					p.close();
+				}if(pm!=null) {
+					
+					pm.close();
+				}
+				
+				
+			}catch(Exception e) {
+				
+				
+				
+			}
+			
+			
 		}
        
         
