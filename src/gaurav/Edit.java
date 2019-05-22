@@ -1,8 +1,9 @@
 package gaurav;
-import java.sql.Connection; 
+
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException; 
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.io.IOException;
@@ -19,25 +20,29 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Edit
  */
 public class Edit extends HttpServlet {
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ResultSet r = null;
+		Connection con = null;
+		//PreparedStatement stmt = null;
+		PreparedStatement stm= null;
 		String[] itemId=request.getParameterValues("itemId");
 		String[] itemCode=request.getParameterValues("itemCode");
 		String[] itemName=request.getParameterValues("itemName");
 		String[] itemType=request.getParameterValues("itemType");
 		String[] itemPrice=request.getParameterValues("itemPrice");
 		String[] quantity=request.getParameterValues("quantity");
-		int primaryKey=0;
+		//int primaryKey=0;
 		try{Class.forName("org.h2.Driver");
 
-		Connection con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa", "");
-		PreparedStatement stmt = con.prepareStatement("select * from inventory where item_id = ?");
-		PreparedStatement stm=con.prepareStatement("update inventory set item_code=? ,item_name=?, item_type=?,price=?,quantity=? where item_id=?");
+		con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa", "");
+		//stmt = con.prepareStatement("select * from inventory where item_id = ?");
+		stm=con.prepareStatement("update inventory set item_code=? ,item_name=?, item_type=?,price=?,quantity=? where item_id=?");
 		for(int i=0;i<itemId.length;i++) {
-			stmt.setInt(1, Integer.parseInt(itemId[i]));
-			ResultSet r=stmt.executeQuery();
-			while(r.next()) {
+			//stmt.setInt(1, Integer.parseInt(itemId[i]));
+			//r=stmt.executeQuery();
+			//while(r.next()) {
 				stm.setInt(1,Integer.parseInt(itemCode[i]));
 				stm.setString(2,itemName[i] );
 				stm.setString(3,itemType[i] );
@@ -46,20 +51,28 @@ public class Edit extends HttpServlet {
 				stm.setInt(6,Integer.parseInt(itemId[i]) );
 				stm.executeUpdate();
 				
-			}
+			//}
 		}
 		
-		con.close();
 		
 		response.sendRedirect("invoice.jsp");
 		
 		}catch(Exception e) {
 					
 					System.out.println(e);
+				}finally {
+					try {
+						if(con != null)
+							con.close();
+						//if(stmt != null)
+							//stmt.close();
+						if(stm != null)
+							stm.close();
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
 				}
 		
 	}
-	
-	
 
 }
