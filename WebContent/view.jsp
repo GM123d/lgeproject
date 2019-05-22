@@ -14,6 +14,22 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  
 <script>
+function newItem(){
+	console.log("gaurav");
+	$(document).ready(function(){
+		$("#table").append("<tr ><td></td><td><input type =text name = itemCodeNew></td>	<td><input type=text name=itemNameNew></td><td><select id=item name =itemTypeNew><option value = >Select Option</option><option value= Stationary>Stationary</option><option value = Electronics>Electronics Goods</option><option value = Grocery>Grocery</option><option value  = Hardware>Hardware Goods</option></select><br/></td>"
++"<td><input type =text name=itemPriceNew></td><td><input type=text  name=quantityNew></td><td><button formaction=Insert>Insert</button></td></tr>");
+			      
+	});
+	
+	$("#addItem").hide();
+	
+	
+    
+	
+	
+}
+
 function dele(id){
 	console.log(id);
 	var rowId="#row"+id;
@@ -80,7 +96,8 @@ width:70px;
 
 <%
 
-String s=request.getParameter("invoiceNo");
+String s=(String)session.getAttribute("invoiceNo");
+
 
 try{
 	int primaryKey=0;
@@ -100,7 +117,7 @@ try{
 <h1>Invoice Bill</h1>
 	<form action="Delete" method="post">
 	<div>
-	<table>
+	<table id="table">
 	
 	<tr>
 	       <td>Company name:</td>
@@ -185,6 +202,7 @@ con.close();%>
 	       
 	    
 	        <button type="submit">Submit</button>
+	        <button id="addItem" type="button" onclick="return newItem()">Add item</button>
 	</form>
 
 	</center>

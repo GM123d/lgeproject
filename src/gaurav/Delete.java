@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Delete extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		ResultSet rs=null;
 		PreparedStatement p=null,pm=null,pmm=null;
 		Connection con=null;
@@ -36,7 +37,7 @@ public class Delete extends HttpServlet {
 			primaryKey=rs.getInt("id");
 			
 		}
-		
+	
 		 pm.setInt(1, primaryKey);
 		 rs=pm.executeQuery();
 		 while(rs.next()) {
@@ -87,14 +88,7 @@ public class Delete extends HttpServlet {
 					e.printStackTrace();
 				}
 			
-			
-			
-			
 		}
 		
-		
-		
-		
-
 	}
 	}

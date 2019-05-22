@@ -89,4 +89,24 @@
     <servlet-name>Delete</servlet-name>
     <url-pattern>/Delete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Insert</display-name>
+    <servlet-name>Insert</servlet-name>
+    <servlet-class>gaurav.Insert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Insert</servlet-name>
+    <url-pattern>/Insert</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Session</display-name>
+    <servlet-name>Session</servlet-name>
+    <servlet-class>gaurav.Session</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Session</servlet-name>
+    <url-pattern>/Session</url-pattern>
+  </servlet-mapping>
 </web-app>

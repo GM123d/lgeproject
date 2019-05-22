@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="view.jsp">
+<form action="Session" method="post">
 <table>
 <tr>
 <td><b>Invoice Number</b></td>
