@@ -14,29 +14,43 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  
 <script>
+function dele(id){
+	console.log(id);
+	var rowId="#row"+id;
+	$(document).ready(function(){
+		$(rowId).remove();
+		
+	});
+	
+	
+}
+
 function edit(id){
 	
-	console.log("gaurav");
+	
 	$(document).ready(function(){
+		//var colId="#col"+id;
+		var delId="#del"+id;
 		var id1="#row"+id+" >td > input";
-		var id2="#row"+id+" > td > button";
+		var id2="#"+id;
 		$(id1).removeAttr("readonly");
 		$(id2).attr("onclick","return submitEdit(this.id)");
 		$(id2).text("Submit");
-		
-		
+		//$(colId).remove();
+		$(delId).hide();
 	});
 
 }
 function submitEdit(id){
-	
+	var delId="#del"+id;
+   
 	var id1="#row"+id+" >td > input";
-	var id2="#row"+id+" > td > button";
+	var id2="#"+id;
 	$(id1).attr("readonly","readonly");
 	$(id2).attr("onclick","return edit(this.id)");
 	$(id2).text("Edit");
-	
-	
+   // $(rowId).append("<td id=col"+id+"><button id=del"+id+" type=button onclick=return dele('"+id+"')>Delete</button></td>");
+	$(delId).show();
 
 	
 	
@@ -46,7 +60,7 @@ function submitEdit(id){
 	div {
 
   background-color: lightgrey;
-  width:1100px;
+  width:1200px;
   border:3px solid black;
   
 }
@@ -84,7 +98,7 @@ try{
 		
 <center>
 <h1>Invoice Bill</h1>
-	<form action="Edit" method="post">
+	<form action="Delete" method="post">
 	<div>
 	<table>
 	
@@ -159,6 +173,8 @@ try{
 	       
 	        <td><input name="quantity" value="<%=inventory.getInt("quantity")%>" readonly></td>
 	       <td><button id="<%=inventory.getInt("item_id")%>" type="button" onclick="return edit(this.id)">Edit</button></td>
+	       <td><button id="del<%=inventory.getInt("item_id")%>" type="button" onclick="return dele(<%=inventory.getInt("item_id")%>)">Delete</button></td>
+
 	       </tr>
 <%  		
 	

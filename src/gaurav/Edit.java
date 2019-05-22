@@ -35,7 +35,6 @@ public class Edit extends HttpServlet {
 		String[] quantity=request.getParameterValues("quantity");
 		//int primaryKey=0;
 		try{Class.forName("org.h2.Driver");
-
 		con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa", "");
 		//stmt = con.prepareStatement("select * from inventory where item_id = ?");
 		stm=con.prepareStatement("update inventory set item_code=? ,item_name=?, item_type=?,price=?,quantity=? where item_id=?");

@@ -14,11 +14,7 @@ function edit(id){
 		$(id1).removeAttr("readonly");
 		$(id2).attr("onclick","return submitEdit(this.id)");
 		$(id2).text("Submit");
-		
-		
-		
-	
-		
+
 		
 		
 		
@@ -149,7 +145,6 @@ width:70px;
 	       
 	       <td><input name="iteType" value="<%=itemType[i] %>" readonly></td>
 	       
-	      
 	       <td><input name="itemPrice" value="<%=itemPrice[i] %>" readonly></td>
 	       
 	        <td><input name="quantity" value="<%=quantity[i]%>" readonly></td>

@@ -288,7 +288,7 @@ font-size: 12px;
 	        <tr>
 	       <td></td>
 	       <td></td>
-	      <td><button type="button"onclick="return anotherItem()">Add Item</button></td>
+	      <td><button type="button" onclick="return anotherItem()">Add Item</button></td>
 	       </tr>
 	       
 	    
