@@ -2,6 +2,7 @@ package gaurav;
 import java.sql.*;
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +44,6 @@ public class Delete extends HttpServlet {
 			
 			 	for(int i=0;i<itemId.length;i++) {
 			if(Integer.parseInt(itemId[i])==rs.getInt("Item_id")) {
-				System.out.println("gaurav");
 			j++;
 				
 		}
@@ -56,6 +56,9 @@ public class Delete extends HttpServlet {
 		 }
 		 
 		 }
+		 
+		 RequestDispatcher d=request.getRequestDispatcher("Edit");
+		 d.forward(request, response);
 		
 		}catch(Exception e) {
 			
