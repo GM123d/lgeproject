@@ -61,8 +61,9 @@ public class output extends HttpServlet {
         }
 		       
         con.close();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
-        dispatcher.forward(request, response);
+        //RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
+        //dispatcher.forward(request, response);
+        response.sendRedirect("invoiceGen.jsp");
         }	catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.print(e);

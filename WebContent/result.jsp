@@ -5,33 +5,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 <script>
-function edit(id){
-	
-	
-	$(document).ready(function(){
-		var id1="#row"+id+" >td > input";
-		var id2="#row"+id+" > td > button";
-		$(id1).removeAttr("readonly");
-		$(id2).attr("onclick","return submitEdit(this.id)");
-		$(id2).text("Submit");
 
-		
-		
-		
-	});
-
-	
-}
-function submitEdit(id){
-	
-	var id1="#row"+id+" >td > input";
-	var id2="#row"+id+" > td > button";
-	$(id1).attr("readonly","readonly");
-	$(id2).attr("onclick","return edit(this.id)");
-	$(id2).text("Edit");
-	
-	
-}
 
 
 
@@ -148,7 +122,7 @@ width:70px;
 	       <td><input name="itemPrice" value="<%=itemPrice[i] %>" readonly></td>
 	       
 	        <td><input name="quantity" value="<%=quantity[i]%>" readonly></td>
-	       <td><button id="<%=i%>" type="button" onclick="return edit(this.id)">Edit</button></td>
+	      
 	       </tr>
 	       <%} %>
 	       

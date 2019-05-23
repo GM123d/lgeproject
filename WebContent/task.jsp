@@ -9,8 +9,6 @@ margin:50px;
 width:500px;
 height:200px;
 font-size:50px;
-
-
 }
 
 

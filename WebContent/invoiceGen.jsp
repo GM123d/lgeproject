@@ -13,65 +13,7 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  
-<script>
-function newItem(){
-	console.log("gaurav");
-	$(document).ready(function(){
-		$("#table").append("<tr ><td></td><td><input type =text name = itemCodeNew></td>	<td><input type=text name=itemNameNew></td><td><select id=item name =itemTypeNew><option value = >Select Option</option><option value= Stationary>Stationary</option><option value = Electronics>Electronics Goods</option><option value = Grocery>Grocery</option><option value  = Hardware>Hardware Goods</option></select><br/></td>"
-+"<td><input type =text name=itemPriceNew></td><td><input type=text  name=quantityNew></td><td><button formaction=Insert>Insert</button></td></tr>");
-			      
-	});
-	
-	$("#addItem").hide();
-	
-	
-    
-	
-	
-}
 
-function dele(id){
-	console.log(id);
-	var rowId="#row"+id;
-	$(document).ready(function(){
-		$(rowId).remove();
-		
-	});
-	
-	
-}
-
-function edit(id){
-	
-	
-	$(document).ready(function(){
-		//var colId="#col"+id;
-		var delId="#del"+id;
-		var id1="#row"+id+" >td > input";
-		var id2="#"+id;
-		$(id1).removeAttr("readonly");
-		$(id2).attr("onclick","return submitEdit(this.id)");
-		$(id2).text("Submit");
-		//$(colId).remove();
-		$(delId).hide();
-	});
-
-}
-function submitEdit(id){
-	var delId="#del"+id;
-   
-	var id1="#row"+id+" >td > input";
-	var id2="#"+id;
-	$(id1).attr("readonly","readonly");
-	$(id2).attr("onclick","return edit(this.id)");
-	$(id2).text("Edit");
-   // $(rowId).append("<td id=col"+id+"><button id=del"+id+" type=button onclick=return dele('"+id+"')>Delete</button></td>");
-	$(delId).show();
-
-	
-	
-}
-</script>
 <style type="text/css">
 	div {
 
@@ -79,11 +21,6 @@ function submitEdit(id){
   width:1200px;
   border:3px solid black;
   
-}
-
-button{
-
-width:70px;
 }
 
 
@@ -191,9 +128,7 @@ try{
 	       <td><input name="itemPrice" value="<%=inventory.getFloat("price")%>" readonly></td>
 	       
 	        <td><input name="quantity" value="<%=inventory.getInt("quantity")%>" readonly></td>
-	       <td><button id="<%=inventory.getInt("item_id")%>" type="button" onclick="return edit(this.id)">Edit</button></td>
-	       <td><button id="del<%=inventory.getInt("item_id")%>" type="button" onclick="return dele(<%=inventory.getInt("item_id")%>)">Delete</button></td>
-
+	       
 	       </tr>
 <%  		
 	
@@ -202,10 +137,8 @@ con.close();%>
 	 </table>
 	       </div>
 	       
-	    
-	        <button type="submit">Submit</button>
-	        <button id="addItem" type="button" onclick="return newItem()">Add item</button>
-	        <button formaction="invoiceGen.jsp">Generate Bill</button>
+	    <button formaction="task.jsp">Go back to Task menu</button>
+	        
 	</form>
 
 	</center>
