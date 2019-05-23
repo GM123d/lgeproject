@@ -54,7 +54,7 @@ public class Edit extends HttpServlet {
 		}
 		
 		
-		response.sendRedirect("invoice.jsp");
+		response.sendRedirect("task.jsp");
 		
 		}catch(Exception e) {
 					

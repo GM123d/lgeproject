@@ -17,5 +17,8 @@ public class Session extends HttpServlet {
 		   HttpSession session=request.getSession();  
 	        session.setAttribute("invoiceNo",s);
 	        response.sendRedirect("view.jsp");
+	     
+	        
 }
+	
 }

@@ -88,7 +88,7 @@ width:70px;
 
 <center>
 <h1>Invoice Bill</h1>
-	<form action="index.jsp">
+	<form action="task.jsp">
 	<div>
 	<table>
 	

@@ -96,6 +96,8 @@ width:70px;
 
 <%
 
+
+
 String s=(String)session.getAttribute("invoiceNo");
 
 

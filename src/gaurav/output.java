@@ -116,7 +116,6 @@ public class output extends HttpServlet {
        //stm.executeUpdate("insert into member_master (Invoice_No) values("+
       //invoiceNo+")");
     int d=0;
-    int i=1; 
     ResultSet rs=stm.executeQuery("Select max(id) from member_master");
      while(rs.next()) {
     	 d=rs.getInt(i);
