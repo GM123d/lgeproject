@@ -108,7 +108,7 @@ try{
 	Connection con=DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa", "");
 
 	PreparedStatement stmt = con.prepareStatement("select * from member_master where invoice_no = ?");
-	stmt.setString(1, s);
+	stmt.setInt(1, Integer.parseInt(s));
 	ResultSet memberMaster=stmt.executeQuery();
 	while(memberMaster.next()){
 		primaryKey=memberMaster.getInt("id");%>
