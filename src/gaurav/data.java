@@ -25,7 +25,7 @@ int i=0;
 		Statement stm=con.createStatement();
 		//stm.execute("create table gaurav(ID int)");
 	stm.execute("create table Member_Master"
-			+"(ID int PRIMARY KEY AUTO_INCREMENT,Invoice_No int AUTO_INCREMENT,Company char(50),Vender char(50), Address char(50),City char(50),State char(50),Pin_Code char(6), Mobile_No char(10))"
+			+"(ID int PRIMARY KEY AUTO_INCREMENT,Invoice_No char(25),Company char(50),Vender char(50), Address char(50),City char(50),State char(50),Pin_Code char(6), Mobile_No char(10))"
 		);
 		stm.execute("create table Inventory"
 					+"(Item_id int not null primary key auto_increment,Item_Code int, Item_Name char(50),Item_Type char(50),Quantity int,Price float,id int ,foreign key(id) references Member_Master(id))"

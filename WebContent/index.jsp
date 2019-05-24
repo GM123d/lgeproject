@@ -221,13 +221,13 @@ div {
 					<tr>
 						<td>Company name:</td>
 						<td><input id="company" type="text" name="companyName"><br />
-						<span id="companyName" class="invalid"></span></td>
+							<span id="companyName" class="invalid"></span></td>
 					</tr>
 
 					<tr>
 						<td>Vender name:</td>
 						<td><input id="vender" type="text" name="venderName"><br />
-						<span id="venderName" class="invalid"></span></td>
+							<span id="venderName" class="invalid"></span></td>
 						<td></td>
 
 					</tr>
@@ -251,7 +251,7 @@ div {
 					<tr>
 						<td>Mobile no:</td>
 						<td><input type="text" id="mobile" name="mobileNo"><br />
-						<span id="mobileNo" class="invalid"></span></td>
+							<span id="mobileNo" class="invalid"></span></td>
 					</tr>
 
 					<tr>
@@ -278,8 +278,7 @@ div {
 								<option value="Electronics">Electronics Goods</option>
 								<option value="Grocery">Grocery</option>
 								<option value="Hardware">Hardware Goods</option>
-						</select><br />
-						<span id="itemType" class="invalid"></span></td>
+						</select><br /> <span id="itemType" class="invalid"></span></td>
 
 
 						<td><input type="text" name="itemPrice"></td>

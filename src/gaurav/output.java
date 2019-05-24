@@ -1,11 +1,12 @@
 package gaurav;
-
+import java.util.Date;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.io.IOException;
 import java.util.concurrent.SynchronousQueue;
 
@@ -27,10 +28,15 @@ public class output extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// response.sendRedirect("Welcome");
-
+		 Date date=new Date();
+		    long time=date.getTime();
+		SimpleDateFormat formatter =new SimpleDateFormat("ddmmyyyy");
+		String strDate=formatter.format(date);
+		
+   
 		response.setContentType("text/html");
 		ResultSet rs = null;
-		// String invoiceNo = request.getParameter("invoiceNo");
+		String invoiceNo = strDate+time;
 		String companyName = request.getParameter("companyName");
 		String venderName = request.getParameter("venderName");
 		String mobileNo = request.getParameter("mobileNo");
@@ -50,28 +56,28 @@ public class output extends HttpServlet {
 			Connection con = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "");
 			Statement stm = con.createStatement();
 			stm.executeUpdate(
-					"insert into member_master (Company,Vender, Address,City,State,Pin_Code, Mobile_No) values('"
-							+ companyName + "','" + venderName + "','" + address + "','" + city + "','" + state + "','"
+					"insert into member_master (invoice_no,Company,Vender, Address,City,State,Pin_Code, Mobile_No) values('"
+							+invoiceNo+"','"+ companyName + "','" + venderName + "','" + address + "','" + city + "','" + state + "','"
 							+ pinCode + "','" + mobileNo + "')");
 			int d = 0;
 			int j = 1;
-			int invoiceNo=0;
+			
 			rs = stm.executeQuery("Select max(id) from member_master");
 			while (rs.next()) {
 				d = rs.getInt(j);
 				j++;
 			}
 
-			PreparedStatement p = con.prepareStatement("Select * from member_master where id=?");
-			p.setInt(1, d);
-			rs = p.executeQuery();
-			if(rs.next()) {
-				
-				invoiceNo=rs.getInt("invoice_no");
-				
-			}
-			HttpSession session=request.getSession();
-			session.setAttribute("invoiceNo",Integer.toString(invoiceNo));
+			//PreparedStatement p = con.prepareStatement("Select * from member_master where id=?");
+			//p.setInt(1, d);
+			//rs = p.executeQuery();
+		//	if (rs.next()) {
+
+			//	invoiceNo = rs.getString("invoice_no");
+
+			//}
+			HttpSession session = request.getSession();
+			session.setAttribute("invoiceNo", invoiceNo);
 
 			for (int i = 0; i < l; i++) {
 

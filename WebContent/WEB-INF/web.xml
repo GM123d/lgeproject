@@ -119,4 +119,34 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Date</display-name>
+    <servlet-name>Date</servlet-name>
+    <servlet-class>gaurav.Date</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Date</servlet-name>
+    <url-pattern>/Date</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Excel</display-name>
+    <servlet-name>Excel</servlet-name>
+    <servlet-class>gaurav.Excel</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Excel</servlet-name>
+    <url-pattern>/Excel</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExcelRW</display-name>
+    <servlet-name>ExcelRW</servlet-name>
+    <servlet-class>gaurav.ExcelRW</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExcelRW</servlet-name>
+    <url-pattern>/ExcelRW</url-pattern>
+  </servlet-mapping>
 </web-app>
