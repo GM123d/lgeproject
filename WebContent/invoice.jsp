@@ -4,6 +4,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style>
+#table{
+
+margin-top:100px;
+
+font-size:50px;
+
+}
+
+
+
+</style>
 <script type="text/javascript">
 	
 </script>
@@ -23,16 +35,18 @@ if(userName==null||userName==""){
 
 
 %>
+<center>
 	<form action="Session" method="post">
-		<table>
+		<table id="table">
 			<tr>
-				<td><b>Invoice Number</b></td>
+				<td><b>Invoice Number</b></td></tr>
+				<tr>
 				<td><input name="invoiceNo">
-				<td><button>submit</button></td>
-			</tr>
+				<td><button>Submit</button></td></tr>
+			
 		</table>
 
-	</form>
+	</form></center>
 
 </body>
 </html>

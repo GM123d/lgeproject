@@ -14,6 +14,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
@@ -83,12 +84,18 @@ function submitEdit(id){
 <style type="text/css">
 div {
 	background-color: lightgrey;
-	width: 1300px;
+	width: 1400px;
 	border: 3px solid black;
 }
 
 button {
 	
+width:90px;
+}
+#generateBill{
+
+width:155px;
+
 }
 </style>
 
@@ -237,7 +244,7 @@ button {
 			<button type="submit">Submit</button>
 			<button id="addItem" type="button" onclick="return newItem()">Add
 				item</button>
-			<button formaction="invoiceGen.jsp">Generate Bill</button>
+			<button id="generateBill" formaction="invoiceGen.jsp">Generate Bill</button>
 		</form>
 
 	</center>
