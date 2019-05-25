@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@include file="logout.jsp" %>
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page import="java.sql.ResultSet"%>
@@ -8,6 +8,8 @@
 <%@ page import="java.sql.Statement"%>
 <%@ page import="java.sql.PreparedStatement"%>
 <%@ page import="java.io.IOException"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
 <%@ page import="java.util.concurrent.SynchronousQueue"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -94,11 +96,20 @@ button {
 <title>Insert title here</title>
 </head>
 <body>
-
+<center>
+		<h1>Invoice Bill</h1>
+		<form action="Delete" method="post">
+			<div>
+				<table id="table">
 	<%
 	
 	
 		String s = (String) session.getAttribute("invoiceNo");
+	 if(s==null||s==""){
+    	 
+    	 
+    	 response.sendRedirect("invoice.jsp");
+     }
 
 		try {
 			int primaryKey = 0;
@@ -109,17 +120,19 @@ button {
 			PreparedStatement stmt = con.prepareStatement("select * from member_master where invoice_no = ?");
 			stmt.setString(1, s);
 			ResultSet memberMaster = stmt.executeQuery();
+			/* if(memberMaster.next()){
+				
+				primaryKey=memberMaster.getInt("id");
+				System.out.println(primaryKey);
+				
+			} */
 			while (memberMaster.next()) {
 				primaryKey = memberMaster.getInt("id");
 	%>
 
 
 
-	<center>
-		<h1>Invoice Bill</h1>
-		<form action="Delete" method="post">
-			<div>
-				<table id="table">
+	
 
 					<tr>
 						<td>Company name:</td>
@@ -169,7 +182,18 @@ button {
 
 					<%
 						}
-
+			
+			PreparedStatement newInvoice=con.prepareStatement("update member_master set invoice_No=? where id=?");
+			 Date date=new Date();
+			    long time=date.getTime();
+			SimpleDateFormat formatter =new SimpleDateFormat("ddmmyyyy");
+			String strDate=formatter.format(date);
+			String newInvoiceNo=strDate+time;
+			newInvoice.setString(1,newInvoiceNo);
+			newInvoice.setInt(2,primaryKey);
+			newInvoice.executeUpdate();
+			session.setAttribute("invoiceNo",newInvoiceNo);
+;
 							PreparedStatement stm = con.prepareStatement("select * from inventory where id = ?");
 							stm.setInt(1, primaryKey);
 							ResultSet inventory = stm.executeQuery();
@@ -222,7 +246,7 @@ button {
 
 </body>
 </html>
-<%
+<% 
 	} catch (Exception e) {
 		System.out.println(e);
 

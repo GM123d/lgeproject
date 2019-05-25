@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@include file="logout.jsp" %>
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page import="java.sql.ResultSet"%>
@@ -53,7 +54,11 @@ div {
 
 	<%
 		String s = (String) session.getAttribute("invoiceNo");
-
+ if(s==null||s==""){
+    	 
+    	 
+    	 response.sendRedirect("invoice.jsp");
+     }
 		try {
 			int primaryKey = 0;
 			Class.forName("org.h2.Driver");
