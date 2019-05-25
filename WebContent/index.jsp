@@ -212,7 +212,18 @@ div {
 <title>Insert title here</title>
 </head>
 <body>
+<%
+String userName=(String)session.getAttribute("userName");
 
+if(userName==null||userName==""){
+	
+	response.sendRedirect("login.jsp");
+	
+}
+
+
+
+%>
 	<center>
 		<h1>Invoice Bill</h1>
 		<form action="output" method="post" onsubmit="return validation()">
