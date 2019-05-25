@@ -14,7 +14,12 @@ public class Session extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+
+		
+		
 		String s = request.getParameter("invoiceNo");
+	
 		HttpSession session = request.getSession();
 		session.setAttribute("invoiceNo", s);
 		response.sendRedirect("view.jsp");

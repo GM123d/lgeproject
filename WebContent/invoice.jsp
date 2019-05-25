@@ -10,6 +10,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+String userName=(String)session.getAttribute("userName");
+if(userName==null){
+	
+	response.sendRedirect("login.jsp");
+	
+}
+
+
+
+%>
 	<form action="Session" method="post">
 		<table>
 			<tr>

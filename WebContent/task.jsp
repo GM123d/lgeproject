@@ -3,6 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script>
+	
+
+	
+</script>
 <style>
 button {
 	margin: 50px;
@@ -15,6 +20,17 @@ button {
 <title>Insert title here</title>
 </head>
 <body>
+<%	
+	String userName = request.getParameter("userName");
+
+ session.setAttribute("userName",userName);
+	
+	if (userName==null) {
+	
+		response.sendRedirect("login.jsp");
+	}
+%>
+
 	<form method="post">
 		<center>
 			<button formaction="index.jsp">Generate New Invoice Bill</button>

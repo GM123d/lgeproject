@@ -56,7 +56,7 @@ public class Edit extends HttpServlet {
 				// }
 			}
 
-			response.sendRedirect("task.jsp");
+			response.sendRedirect("view.jsp");
 
 		} catch (Exception e) {
 

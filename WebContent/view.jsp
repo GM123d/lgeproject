@@ -18,8 +18,8 @@
 function newItem(){
 	console.log("gaurav");
 	$(document).ready(function(){
-		$("#table").append("<tr ><td></td><td><input type =text name = itemCodeNew></td>	<td><input type=text name=itemNameNew></td><td><select id=item name =itemTypeNew><option value = >Select Option</option><option value= Stationary>Stationary</option><option value = Electronics>Electronics Goods</option><option value = Grocery>Grocery</option><option value  = Hardware>Hardware Goods</option></select><br/></td>"
-+"<td><input type =text name=itemPriceNew></td><td><input type=text  name=quantityNew></td><td><button formaction=Insert>Insert</button></td></tr>");
+		$("#table").append('<tr id="rowNewItem"><td></td><td><input type ="text" name = "itemCodeNew"></td>	<td><input type="text" name="itemNameNew"></td><td><select id="item" name ="itemTypeNew"><option value ="" >Select Option</option><option value= "Stationary">Stationary</option><option value = "Electronics">Electronics Goods</option><option value = "Grocery">Grocery</option><option value  = "Hardware">Hardware Goods</option></select><br/></td>'
++'<td><input type ="text" name="itemPriceNew"></td><td><input type="text"  name="quantityNew"></td><td><button formaction="Insert">Insert</button></td><td><button type="button" id="NewItem" onclick="return dele(this.id)">Delete</button></td></tr>');
 			      
 	});
 	
@@ -33,6 +33,11 @@ function newItem(){
 
 function dele(id){
 	console.log(id);
+	if(id=="NewItem"){
+		
+		$("#addItem").show();
+		
+	}
 	var rowId="#row"+id;
 	$(document).ready(function(){
 		$(rowId).remove();
@@ -91,6 +96,8 @@ button {
 <body>
 
 	<%
+	
+	
 		String s = (String) session.getAttribute("invoiceNo");
 
 		try {

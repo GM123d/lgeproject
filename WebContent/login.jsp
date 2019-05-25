@@ -13,7 +13,7 @@ div {
 
 span {
 	color: red;
-	font-size: 13px
+	font-size: 13pxss
 }
 
 table {
@@ -73,6 +73,9 @@ button {
 		}
 
 	}
+	
+	
+
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
@@ -104,7 +107,7 @@ button {
 						<td><div id="space"></div></td>
 					</tr>
 				</table>
-				<button>Submit</button>
+				<button >Submit</button>
 			</form>
 		</div>
 	</center>
