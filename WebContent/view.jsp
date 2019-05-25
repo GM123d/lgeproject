@@ -83,7 +83,7 @@ function submitEdit(id){
 <style type="text/css">
 div {
 	background-color: lightgrey;
-	width: 1200px;
+	width: 1300px;
 	border: 3px solid black;
 }
 
