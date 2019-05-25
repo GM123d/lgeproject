@@ -130,6 +130,7 @@ session.invalidate();
 				</table>
 				
 		</div>
+		<div id="space" style="background-color:white;"></div>
 		<button >Submit</button>
 			</form>
 	</center>
